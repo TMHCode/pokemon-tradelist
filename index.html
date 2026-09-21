@@ -67,8 +67,6 @@ h1 small{display:block;font:600 .95rem/1.3 var(--body);color:var(--muted);margin
 .tradeline b{color:var(--swap)}
 
 .search{width:100%;margin-top:12px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;font:inherit;font-size:.95rem;color:var(--ink)}
-details.settings{margin-top:10px;font-size:.88rem}
-details.settings summary{cursor:pointer;color:var(--muted);width:max-content}
 .setrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
 .setrow input{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 10px;font:inherit;width:130px}
 .btn{border:0;border-radius:8px;padding:8px 12px;background:var(--ink);color:var(--surface);font-weight:700;cursor:pointer}
@@ -146,16 +144,6 @@ div.thumb{cursor:default}
 .empty{text-align:center;padding:40px 12px;color:var(--muted)}
 .empty[hidden]{display:none}
 
-/* Setup */
-.setup{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px}
-.setup[hidden]{display:none}
-.setup h2{font:700 1.2rem var(--display);margin:0 0 8px}
-.setup ol{padding-left:20px;margin:8px 0 14px}
-.setup li{margin-bottom:8px}
-.setup label{display:block;font-size:.85rem;font-weight:700;margin:10px 0 4px}
-.setup input{width:100%;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:8px;padding:9px 10px;font:inherit;font-size:.9rem}
-.setup .err{color:var(--err);font-size:.88rem;margin-top:10px}
-.needs-setup .app-only{display:none!important}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:30;background:rgba(8,10,20,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));cursor:zoom-out}
@@ -190,53 +178,25 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
         <span>Ich bin</span>
         <div class="seg" role="group" aria-label="Wer bearbeitet gerade?">
           <button type="button" data-p="a" data-me aria-pressed="true" class="nameA">Tobi</button>
-          <button type="button" data-p="b" data-me aria-pressed="false" class="nameB">Freundin</button>
+          <button type="button" data-p="b" data-me aria-pressed="false" class="nameB">Laura</button>
         </div>
       </div>
     </div>
 
-    <section class="setup" id="setup" hidden>
-      <h2>Einmalige Einrichtung</h2>
-      <p>Die Liste speichert in deiner eigenen, kostenlosen Supabase-Datenbank. Danach teilst du einen Link, und ihr seht beide alles live.</p>
-      <ol>
-        <li>Auf supabase.com ein neues Projekt anlegen.</li>
-        <li>Im Projekt den SQL Editor öffnen, das Skript einfügen und auf Run tippen. <button type="button" class="btn" id="copySql">SQL kopieren</button></li>
-        <li>Unter Project Settings, API Keys die Project URL und den Publishable Key (früher anon key) kopieren und hier eintragen.</li>
-      </ol>
-      <label for="cfgUrl">Project URL</label>
-      <input id="cfgUrl" placeholder="https://xxxx.supabase.co" autocomplete="off" inputmode="url">
-      <label for="cfgKey">Publishable Key</label>
-      <input id="cfgKey" placeholder="sb_publishable_… oder eyJ…" autocomplete="off">
-      <div class="setrow"><button type="button" class="btn" id="cfgSave">Verbinden</button></div>
-      <div class="err" id="cfgErr" hidden></div>
-    </section>
-
     <div class="app-only">
       <div class="progress">
         <div class="prog" data-p="a"><div class="who"><b class="nameA">Tobi</b><em id="cntA">0/199</em></div><div class="bar"><i id="barA"></i></div><div class="sub" id="subA"></div></div>
-        <div class="prog" data-p="b"><div class="who"><b class="nameB">Freundin</b><em id="cntB">0/199</em></div><div class="bar"><i id="barB"></i></div><div class="sub" id="subB"></div></div>
+        <div class="prog" data-p="b"><div class="who"><b class="nameB">Laura</b><em id="cntB">0/199</em></div><div class="bar"><i id="barB"></i></div><div class="sub" id="subB"></div></div>
       </div>
       <button type="button" class="tradeline" id="tradeline"></button>
       <input class="search" id="search" type="search" placeholder="Suche nach Name, Nummer oder Artist" aria-label="Karten durchsuchen">
-      <details class="settings">
-        <summary>Einstellungen und Link teilen</summary>
-        <div class="setrow">
-          <input id="inA" maxlength="20" aria-label="Name Person A">
-          <input id="inB" maxlength="20" aria-label="Name Person B">
-          <button type="button" class="btn" id="saveNames">Namen speichern</button>
-        </div>
-        <div class="setrow">
-          <button type="button" class="btn" id="shareLink">Link zum Mitmachen teilen</button>
-          <button type="button" class="btn ghost" id="resetCfg">Datenbank-Verbindung ändern</button>
-        </div>
-      </details>
     </div>
   </header>
 
   <div class="sticky app-only">
     <div class="row-scroll status" id="status" role="group" aria-label="Anzeigen"></div>
     <div class="row-scroll" id="chips" role="group" aria-label="Seltenheit filtern"></div>
-    <div class="colhead"><span></span><span id="shown">199 Karten</span><span class="nm nameA" data-p="a">Tobi</span><span class="nm nameB" data-p="b">Freundin</span></div>
+    <div class="colhead"><span></span><span id="shown">199 Karten</span><span class="nm nameA" data-p="a">Tobi</span><span class="nm nameB" data-p="b">Laura</span></div>
   </div>
 
   <main id="list" class="app-only"></main>
@@ -255,10 +215,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* Optional: hier fest eintragen, dann entfällt die Einrichtung im Browser komplett. */
-const CONFIG = { url: "", key: "" };
+const CONFIG = { url: "https://ehghdgcyexwzzoueisnn.supabase.co", key: "sb_publishable_yU_0QbGY6XG8heP341F0GQ_fqYZSY25" };
 
-const SQL = "-- Tauschordner 30th Celebration: einmal im Supabase SQL Editor ausführen\n\ncreate table if not exists public.tauschordner (\n  person  text    not null check (person in ('a','b')),\n  card_id text    not null check (char_length(card_id) <= 20),\n  have    boolean not null default false,\n  dup     integer not null default 0 check (dup between 0 and 99),\n  primary key (person, card_id)\n);\n\ncreate table if not exists public.tauschordner_namen (\n  person text primary key check (person in ('a','b')),\n  name   text not null check (char_length(name) between 1 and 20)\n);\n\nalter table public.tauschordner       enable row level security;\nalter table public.tauschordner_namen enable row level security;\n\ngrant usage on schema public to anon;\ngrant select, insert, update on public.tauschordner       to anon;\ngrant select, insert, update on public.tauschordner_namen to anon;\n\ndrop policy if exists \"lesen\"     on public.tauschordner;\ndrop policy if exists \"eintragen\" on public.tauschordner;\ndrop policy if exists \"aendern\"   on public.tauschordner;\ncreate policy \"lesen\"     on public.tauschordner for select to anon using (true);\ncreate policy \"eintragen\" on public.tauschordner for insert to anon with check (true);\ncreate policy \"aendern\"   on public.tauschordner for update to anon using (true) with check (true);\n\ndrop policy if exists \"lesen\"     on public.tauschordner_namen;\ndrop policy if exists \"eintragen\" on public.tauschordner_namen;\ndrop policy if exists \"aendern\"   on public.tauschordner_namen;\ncreate policy \"lesen\"     on public.tauschordner_namen for select to anon using (true);\ncreate policy \"eintragen\" on public.tauschordner_namen for insert to anon with check (true);\ncreate policy \"aendern\"   on public.tauschordner_namen for update to anon using (true) with check (true);\n\n-- Live-Updates aktivieren\ndo $$ begin\n  alter publication supabase_realtime add table public.tauschordner;\nexception when duplicate_object then null; end $$;\ndo $$ begin\n  alter publication supabase_realtime add table public.tauschordner_namen;\nexception when duplicate_object then null; end $$;\n";
 const CARDS = [["me55-1","001/128","Exeggcute","common","Common","Grass","","Nelnal","main"],["me55-2","002/128","Alolan Exeggutor","common","Common","Grass","","Oswaldo KATO","main"],["me55-3","003/128","Volbeat","common","Common","Grass","","Yoriyuki Ikegami","main"],["me55-4","004/128","Illumise","common","Common","Grass","","Shibuzoh.","main"],["me55-5","005/128","Tropius","common","Common","Grass","","Minahamu","main"],["me55-6","006/128","Cherubi","common","Common","Grass","","Kurata So","main"],["me55-7","007/128","Cherrim","common","Common","Grass","","takashi shiraishi","main"],["me55-8","008/128","Vivillon","common","Common","Grass","","Jerky","main"],["me55-9","009/128","Vulpix","common","Common","Fire","","miki kudo","main"],["me55-10","010/128","Ninetales","common","Common","Fire","","kodama","main"],["me55-11","011/128","Moltres","common","Common","Fire","","HYOGONOSUKE","main"],["me55-12","012/128","Ho-Oh","rare","Rare","Fire","","Anesaki Dynamic","main"],["me55-13","013/128","Victini","common","Common","Fire","","Jiro Sasumo","main"],["me55-14","014/128","Reshiram","rare","Rare","Fire","","Uta","main"],["me55-15","015/128","Fuecoco ex","dr","Double Rare","Fire","","5ban Graphics","main"],["me55-16","016/128","Slowpoke","common","Common","Water","","Uninori","main"],["me55-17","017/128","Lapras","common","Common","Water","","Masa","main"],["me55-18","018/128","Articuno","common","Common","Water","","HYOGONOSUKE","main"],["me55-19","019/128","Kyogre","rare","Rare","Water","","Tonji Matsuno","main"],["me55-20","020/128","Palkia","rare","Rare","Water","","kawayoo","main"],["me55-21","021/128","Greninja ex","dr","Double Rare","Water","","5ban Graphics","main"],["me55-22","022/128","Wishiwashi","common","Common","Water","","Narano","main"],["me55-23","023/128","Pikachu","pika","Pikachu Rare","Lightning","","Ken Sugimori","main"],["me55-24","024/128","Pikachu","pika","Pikachu Rare","Lightning","","danciao","main"],["me55-25","025/128","Pikachu","pika","Pikachu Rare","Lightning","","satoma","main"],["me55-26","026/128","Pikachu","pika","Pikachu Rare","Lightning","","Takeshi Nakamura","main"],["me55-27","027/128","Pikachu","pika","Pikachu Rare","Lightning","","Asako Ito","main"],["me55-28","028/128","Pikachu","pika","Pikachu Rare","Lightning","","sowsow","main"],["me55-29","029/128","Pikachu","pika","Pikachu Rare","Lightning","","James Turner","main"],["me55-30","030/128","Pikachu","pika","Pikachu Rare","Lightning","","DOM","main"],["me55-31","031/128","Pikachu","pika","Pikachu Rare","Lightning","","Atsushi Furusawa","main"],["me55-32","032/128","Pikachu","pika","Pikachu Rare","Lightning","","Tomokazu Komiya","main"],["me55-33","033/128","Pikachu","pika","Pikachu Rare","Lightning","","Narumi Sato","main"],["me55-34","034/128","Pikachu","pika","Pikachu Rare","Lightning","","USGMEN","main"],["me55-35","035/128","Pikachu","pika","Pikachu Rare","Lightning","","Susumu Maeya","main"],["me55-36","036/128","Pikachu","pika","Pikachu Rare","Lightning","","OKACHEKE","main"],["me55-37","037/128","Pikachu","pika","Pikachu Rare","Lightning","","Yuu Nishida","main"],["me55-38","038/128","Pikachu","pika","Pikachu Rare","Lightning","","Tetsu Kayama","main"],["me55-39","039/128","Pikachu","pika","Pikachu Rare","Lightning","","Teeziro","main"],["me55-40","040/128","Pikachu","pika","Pikachu Rare","Lightning","","Shinji Kanda","main"],["me55-41","041/128","Pikachu","pika","Pikachu Rare","Lightning","","Rianti Hidayat","main"],["me55-42","042/128","Pikachu","pika","Pikachu Rare","Lightning","","Akira Komayama","main"],["me55-43","043/128","Pikachu","pika","Pikachu Rare","Lightning","","OOYAMA","main"],["me55-44","044/128","Pikachu","pika","Pikachu Rare","Lightning","","akagi","main"],["me55-45","045/128","Pikachu","pika","Pikachu Rare","Lightning","","Naoyo Kimura","main"],["me55-46","046/128","Pikachu","pika","Pikachu Rare","Lightning","","svlt","main"],["me55-47","047/128","Pikachu","pika","Pikachu Rare","Lightning","","Atsuko Nishida","main"],["me55-48","048/128","Pikachu","pika","Pikachu Rare","Lightning","","KIYOTAKA OSHIYAMA","main"],["me55-49","049/128","Pikachu","pika","Pikachu Rare","Lightning","","Nurikabe","main"],["me55-50","050/128","Pikachu","pika","Pikachu Rare","Lightning","","Shimaris Yukichi","main"],["me55-51","051/128","Pikachu","pika","Pikachu Rare","Lightning","","nagimiso","main"],["me55-52","052/128","Pikachu","pika","Pikachu Rare","Lightning","","Kazuki Minami","main"],["me55-53","053/128","Pikachu ex","dr","Double Rare","Lightning","","5ban Graphics","main"],["me55-54","054/128","Pikachu ex","dr","Double Rare","Lightning","","takuyoa","main"],["me55-55","055/128","Zapdos","common","Common","Lightning","","HYOGONOSUKE","main"],["me55-56","056/128","Zekrom","rare","Rare","Lightning","","akagi","main"],["me55-57","057/128","Zeraora","common","Common","Lightning","","Bun Toujo","main"],["me55-58","058/128","Toxel","common","Common","Lightning","","Shimaris Yukichi","main"],["me55-59","059/128","Toxtricity","common","Common","Lightning","","Haru Akasaka","main"],["me55-60","060/128","Toxtricity","common","Common","Lightning","","Yuriko Akase","main"],["me55-61","061/128","Morpeko","common","Common","Lightning","","Naoki Saito","main"],["me55-62","062/128","Miraidon","rare","Rare","Lightning","","Kazumasa Yasukuni","main"],["me55-63","063/128","Mewtwo","rare","Rare","Psychic","","nagimiso","main"],["me55-64","064/128","Mewtwo ex","dr","Double Rare","Psychic","","5ban Graphics","main"],["me55-65","065/128","Mew","rare","Rare","Psychic","","danciao","main"],["me55-66","066/128","Mew ex","dr","Double Rare","Psychic","","aky CG Works","main"],["me55-67","067/128","Marill","common","Common","Psychic","","Saya Tsuruta","main"],["me55-68","068/128","Azumarill","common","Common","Psychic","","Kagemaru Himeno","main"],["me55-69","069/128","Espeon","common","Common","Psychic","","aspara","main"],["me55-70","070/128","Espeon ex","dr","Double Rare","Psychic","","5ban Graphics","main"],["me55-71","071/128","Sylveon ex","dr","Double Rare","Psychic","","5ban Graphics","main"],["me55-72","072/128","Unown","common","Common","Psychic","","mingo","main"],["me55-73","073/128","Drifloon","common","Common","Psychic","","Shinya Komatsu","main"],["me55-74","074/128","Cresselia","common","Common","Psychic","","KEIICHIRO ITO","main"],["me55-75","075/128","Chandelure","common","Common","Psychic","","Yoshioka","main"],["me55-76","076/128","Xerneas","rare","Rare","Psychic","","kodama","main"],["me55-77","077/128","Comfey","common","Common","Psychic","","sui","main"],["me55-78","078/128","Cosmog","common","Common","Psychic","","Mina Nakai","main"],["me55-79","079/128","Cosmoem","common","Common","Psychic","","Masako Tomii","main"],["me55-80","080/128","Lunala","rare","Rare","Psychic","","Bun Toujo","main"],["me55-81","081/128","Gimmighoul","common","Common","Psychic","","Fujimoto Gold","main"],["me55-82","082/128","Groudon","rare","Rare","Fighting","","Takumi Wada","main"],["me55-83","083/128","Lucario","common","Common","Fighting","","Hideki Ishikawa","main"],["me55-84","084/128","Seismitoad","common","Common","Fighting","","Kurata So","main"],["me55-85","085/128","Lycanroc","common","Common","Fighting","","matazo","main"],["me55-86","086/128","Koraidon","rare","Rare","Fighting","","Mitsuhiro Arita","main"],["me55-87","087/128","Nidoran ♀","common","Common","Darkness","","Taira Akitsu","main"],["me55-88","088/128","Nidorina","common","Common","Darkness","","Miki Tanaka","main"],["me55-89","089/128","Alolan Meowth","common","Common","Darkness","","Natsumi Yoshida","main"],["me55-90","090/128","Gengar ex","dr","Double Rare","Darkness","","5ban Graphics","main"],["me55-91","091/128","Umbreon","common","Common","Darkness","","Iori Suzuki","main"],["me55-92","092/128","Umbreon ex","dr","Double Rare","Darkness","","Keisuke Azuma","main"],["me55-93","093/128","Murkrow","common","Common","Darkness","","Kouki Saitou","main"],["me55-94","094/128","Scraggy","common","Common","Darkness","","Souichirou Gunjima","main"],["me55-95","095/128","Zorua","common","Common","Darkness","","Atsuya Uki","main"],["me55-96","096/128","Zoroark","common","Common","Darkness","","Shiburingaru","main"],["me55-97","097/128","Deino","common","Common","Darkness","","Gapao","main"],["me55-98","098/128","Zweilous","common","Common","Darkness","","IKEDA Saki","main"],["me55-99","099/128","Hydreigon","common","Common","Darkness","","Ryuta Fuse","main"],["me55-100","100/128","Yveltal","rare","Rare","Darkness","","hncl","main"],["me55-101","101/128","Galarian Meowth","common","Common","Metal","","Mékayu","main"],["me55-102","102/128","Jirachi ex","dr","Double Rare","Metal","","5ban Graphics","main"],["me55-103","103/128","Dialga","rare","Rare","Metal","","toriyufu","main"],["me55-104","104/128","Ferrothorn","common","Common","Metal","","Po-Suzuki","main"],["me55-105","105/128","Solgaleo","rare","Rare","Metal","","Nurikabe","main"],["me55-106","106/128","Zacian","rare","Rare","Metal","","AKIRA EGAWA","main"],["me55-107","107/128","Zamazenta","rare","Rare","Metal","","Tsuyoshi Nagano","main"],["me55-108","108/128","Gholdengo","common","Common","Metal","","Sanosuke Sakuma","main"],["me55-109","109/128","Salamence ex","dr","Double Rare","Dragon","","5ban Graphics","main"],["me55-110","110/128","Jangmo-o","common","Common","Dragon","","miki kudo","main"],["me55-111","111/128","Hakamo-o","common","Common","Dragon","","Jiro Sasumo","main"],["me55-112","112/128","Kommo-o","common","Common","Dragon","","MARINA Chikazawa","main"],["me55-113","113/128","Meowth","common","Common","Colorless","","MINAMINAMI Take","main"],["me55-114","114/128","Kangaskhan","common","Common","Colorless","","Pani Kobayashi","main"],["me55-115","115/128","Ditto","common","Common","Colorless","","Toshinao Aoki","main"],["me55-116","116/128","Eevee","common","Common","Colorless","","Wintr Wandr","main"],["me55-117","117/128","Eevee","common","Common","Colorless","","En Morikura","main"],["me55-118","118/128","Eevee","common","Common","Colorless","","Hitoshi Ariga","main"],["me55-119","119/128","Snorlax","common","Common","Colorless","","Aya Kusube","main"],["me55-120","120/128","Igglybuff","common","Common","Colorless","","Kanami Ogata","main"],["me55-121","121/128","Lugia","rare","Rare","Colorless","","Kazuki Minami","main"],["me55-122","122/128","Hisuian Zorua","common","Common","Colorless","","Megumi Mizutani","main"],["me55-123","123/128","Hisuian Zoroark","common","Common","Colorless","","Kamome Shirahama","main"],["me55-124","124/128","Minior","common","Common","Colorless","","ryoma uratsuka","main"],["me55-125","125/128","Maushold","common","Common","Colorless","","Kariya","main"],["me55-126","126/128","Poké Pad","common","Common","Trainer","","Yuka Morii","main"],["me55-127","127/128","Switch","common","Common","Trainer","","Yuka Morii","main"],["me55-128","128/128","Ultra Ball","common","Common","Trainer","","Yuka Morii","main"],["me55-129","129/128","Alolan Exeggutor","ir","Illustration Rare","Grass","","AYUMI ODASHIMA","secret"],["me55-130","130/128","Moltres","ir","Illustration Rare","Fire","","mashu","secret"],["me55-131","131/128","Lapras","ir","Illustration Rare","Water","","Amelicart","secret"],["me55-132","132/128","Articuno","ir","Illustration Rare","Water","","mashu","secret"],["me55-133","133/128","Zapdos","ir","Illustration Rare","Lightning","","mashu","secret"],["me55-134","134/128","Toxtricity","ir","Illustration Rare","Lightning","","Kazumasa Yasukuni","secret"],["me55-135","135/128","Morpeko","ir","Illustration Rare","Lightning","","Yoshimi Miyoshi","secret"],["me55-136","136/128","Drifloon","ir","Illustration Rare","Psychic","","Whisker","secret"],["me55-137","137/128","Chandelure","ir","Illustration Rare","Psychic","","YASHIRO Nanaco","secret"],["me55-138","138/128","Lycanroc","ir","Illustration Rare","Fighting","","Raita Kazama","secret"],["me55-139","139/128","Alolan Meowth","ir","Illustration Rare","Darkness","","OKUBO","secret"],["me55-140","140/128","Scraggy","ir","Illustration Rare","Darkness","","GOSSAN","secret"],["me55-141","141/128","Galarian Meowth","ir","Illustration Rare","Metal","","OKUBO","secret"],["me55-142","142/128","Gholdengo","ir","Illustration Rare","Metal","","toriyufu","secret"],["me55-143","143/128","Kommo-o","ir","Illustration Rare","Dragon","","Gemi","secret"],["me55-144","144/128","Meowth","ir","Illustration Rare","Colorless","","OKUBO","secret"],["me55-145","145/128","Hisuian Zorua","ir","Illustration Rare","Colorless","","0313","secret"],["me55-146","146/128","Maushold","ir","Illustration Rare","Colorless","","osare","secret"],["me55-147","147/128","Fuecoco ex","sir","Special Illustration Rare","Fire","","Atsushi Furusawa","secret"],["me55-148","148/128","Greninja ex","sir","Special Illustration Rare","Water","","GIDORA","secret"],["me55-149","149/128","Pikachu ex","sir","Special Illustration Rare","Lightning","","kantaro","secret"],["me55-150","150/128","Pikachu ex","sir","Special Illustration Rare","Lightning","","kantaro","secret"],["me55-151","151/128","Mewtwo ex","sir","Special Illustration Rare","Psychic","","Yano Keiji","secret"],["me55-152","152/128","Mew ex","sir","Special Illustration Rare","Psychic","","Kuroimori","secret"],["me55-153","153/128","Sylveon ex","sir","Special Illustration Rare","Psychic","","You Iribi","secret"],["me55-154","154/128","Gengar ex","sir","Special Illustration Rare","Darkness","","CHORISO","secret"],["me55-155","155/128","Jirachi ex","sir","Special Illustration Rare","Metal","","AKIRA EGAWA","secret"],["me55-156","156/128","Salamence ex","sir","Special Illustration Rare","Dragon","","Ryota Murayama","secret"],["me55-157","157/128","Mewtwo ex","fur","Futuristic Rare","Psychic","","YOSHIROTTEN","secret"],["me55-158","158/128","Mew ex","fur","Futuristic Rare","Psychic","","YOSHIROTTEN","secret"],["me55-R","R","Mew","rgb","RGB-Mew (Secret)","Psychic","","YOSHIROTTEN","secret"],["me55-G","G","Mew","rgb","RGB-Mew (Secret)","Psychic","","YOSHIROTTEN","secret"],["me55-B","B","Mew","rgb","RGB-Mew (Secret)","Psychic","","YOSHIROTTEN","secret"],["me55c-58","#58","Pikachu","cc","Common","Lightning","","Mitsuhiro Arita","cc"],["me55c-4","#4","Charizard","cc","Rare Holo","Fire","","Mitsuhiro Arita","cc"],["me55c-18","#18","Misty","cc","Rare Holo","Trainer","","Ken Sugimori","cc"],["me55c-69","#69","Erika's Jigglypuff","cc","Common","Colorless","","Ken Sugimori","cc"],["me55c-25","#25","Sneasel","cc","Rare","Darkness","","Ken Sugimori","cc"],["me55c-106","#106","Shining Celebi","cc","Rare Secret","Grass","","Hironobu Yoshida","cc"],["me55c-149","#149","Lugia","cc","Rare Secret","Colorless","","Naoyo Kimura","cc"],["me55c-5","#5","Delcatty","cc","Rare Holo","Colorless","","Atsuko Nishida","cc"],["me55c-19","#19","Dark Tyranitar","cc","Rare","Darkness","","Nakaoka","cc"],["me55c-108","#108","Scizor ex","cc","Rare Holo ex","Metal","","Mitsuhiro Arita","cc"],["me55c-11","#11","Metagross","cc","Rare Holo","Lightning","Metal","Masakazu Fukuda","cc"],["me55c-106p","#106","Palkia LV.X","cc","Rare Holo LV.X","Water","","Ryo Ueda","cc"],["me55c-43","#43","Uxie","cc","Rare","Psychic","","Ken Sugimori","cc"],["me55c-47","#47","Crobat G","cc","Uncommon","Psychic","","Makoto Imai","cc"],["me55c-94","#94","Gengar","cc","Rare Prime","Psychic","","Takashi Yamaguchi","cc"],["me55c-99","#99","Darkrai & Cresselia LEGEND (Teil 1)","cc","LEGEND","Darkness","Psychic","Noriko Takaya, Shinji Higuchi","cc"],["me55c-100","#100","Darkrai & Cresselia LEGEND (Teil 2)","cc","LEGEND","Darkness","Psychic","Noriko Takaya, Shinji Higuchi","cc"],["me55c-101","#101","N","cc","Rare Ultra","Trainer","","Ken Sugimori","cc"],["me55c-85","#85","Rayquaza-EX","cc","Rare Holo EX","Dragon","","Eske Yoshinob","cc"],["me55c-11g","#11","Genesect-EX","cc","Rare Holo EX","Grass","","Eske Yoshinob","cc"],["me55c-106m","#106","M Gardevoir-EX","cc","Rare Holo EX","Fairy","","5ban Graphics","cc"],["me55c-41","#41","Greninja BREAK","cc","Rare BREAK","Water","","5ban Graphics","cc"],["me55c-89","#89","Solgaleo-GX","cc","Rare Holo GX","Metal","","PLANETA","cc"],["me55c-57","#57","Buzzwole-GX","cc","Rare Holo GX","Fighting","","5ban Graphics","cc"],["me55c-33","#33","Pikachu & Zekrom-GX","cc","Rare Holo GX","Lightning","","Mitsuhiro Arita","cc"],["me55c-138","#138","Zacian V","cc","Holo Rare V","Metal","","5ban Graphics","cc"],["me55c-50","#50","Raikou","cc","Amazing Rare","Lightning","","Hideki Ishikawa","cc"],["me55c-114","#114","Mew VMAX","cc","Holo Rare VMAX","Psychic","","5ban Graphics","cc"],["me55c-123","#123","Arceus VSTAR","cc","Holo Rare VSTAR","Colorless","","5ban Graphics","cc"],["me55c-203","#203","Magikarp","cc","Illustration Rare","Water","","Shinji Kanda","cc"],["en-1","","Basic Grass Energy","energy","Basis-Energie (Foil)","Grass","","YOSHIROTTEN","energy"],["en-2","","Basic Fire Energy","energy","Basis-Energie (Foil)","Fire","","YOSHIROTTEN","energy"],["en-3","","Basic Water Energy","energy","Basis-Energie (Foil)","Water","","YOSHIROTTEN","energy"],["en-4","","Basic Lightning Energy","energy","Basis-Energie (Foil)","Lightning","","YOSHIROTTEN","energy"],["en-5","","Basic Psychic Energy","energy","Basis-Energie (Foil)","Psychic","","YOSHIROTTEN","energy"],["en-6","","Basic Fighting Energy","energy","Basis-Energie (Foil)","Fighting","","YOSHIROTTEN","energy"],["en-7","","Basic Darkness Energy","energy","Basis-Energie (Foil)","Darkness","","YOSHIROTTEN","energy"],["en-8","","Basic Metal Energy","energy","Basis-Energie (Foil)","Metal","","YOSHIROTTEN","energy"]];
 const TOTAL = CARDS.length;
 const IMG = id => `https://images.scrydex.com/pokemon/${id}/small`;
@@ -274,11 +232,11 @@ const EMPTY = Object.freeze({have:false, dup:0});
 /* ---------- state ---------- */
 let me = "a";
 try { const s = localStorage.getItem("tc30-me"); if (s === "a" || s === "b") me = s; } catch (e) {}
-const names = {a:"Tobi", b:"Freundin"};
+const names = Object.freeze({a:"Tobi", b:"Laura"});
 const server = {a:{}, b:{}}, pend = {a:{}, b:{}}, infl = {a:{}, b:{}};
 const busy = {a:false, b:false}, timers = {a:null, b:null};
 const filt = {q:"", status:"all", groups:new Set()};
-let sb = null, cfg = null, live = false, pollT = null, channel = null;
+let sb = null, live = false, pollT = null, channel = null;
 
 const cur = (p, id) => pend[p][id] || infl[p][id] || server[p][id] || EMPTY;
 const other = () => me === "a" ? "b" : "a";
@@ -405,7 +363,7 @@ function refresh(){
     if (vis){ shown++; secCount[r.c[8]] = (secCount[r.c[8]] || 0) + 1; }
   }
   for (const k in secEls) secEls[k].h.hidden = !secCount[k];
-  $("#empty").hidden = shown > 0 || !cfg;
+  $("#empty").hidden = shown > 0;
   $("#shown").textContent = shown === TOTAL ? `${TOTAL} Karten` : `${shown} von ${TOTAL}`;
   stats();
 }
@@ -442,8 +400,6 @@ function stats(){
 function applyNames(){
   document.querySelectorAll(".nameA").forEach(e => e.textContent = names.a);
   document.querySelectorAll(".nameB").forEach(e => e.textContent = names.b);
-  if (document.activeElement !== $("#inA")) $("#inA").value = names.a;
-  if (document.activeElement !== $("#inB")) $("#inB").value = names.b;
   renderStatus(); refresh();
 }
 function applyMe(){
@@ -455,7 +411,7 @@ function setStatus(mode, text){
   const el = $("#sync"); el.dataset.mode = mode;
   el.querySelector("span").textContent = text || {
     connecting:"Verbinde …", live:"Live synchronisiert",
-    polling:"Verbunden, Aktualisierung alle 15 Sekunden", setup:"Noch nicht eingerichtet"
+    polling:"Verbunden, Aktualisierung alle 15 Sekunden"
   }[mode] || "";
 }
 let toastT;
@@ -511,19 +467,13 @@ async function flush(p){
 /* ---------- reads + realtime ---------- */
 async function loadAll(){
   if (!sb) return false;
-  let r1, r2;
-  try {
-    [r1, r2] = await Promise.all([
-      sb.from("tauschordner").select("person,card_id,have,dup").limit(1000),
-      sb.from("tauschordner_namen").select("person,name")
-    ]);
-  } catch (e){ setStatus("error", explain(e)); return false; }
+  let r1;
+  try { r1 = await sb.from("tauschordner").select("person,card_id,have,dup").limit(1000); } catch (e){ setStatus("error", explain(e)); return false; }
   if (r1.error){ setStatus("error", explain(r1.error)); return false; }
   const next = {a:{}, b:{}};
   for (const row of r1.data || []) if ((row.person === "a" || row.person === "b") && rows.has(row.card_id)) next[row.person][row.card_id] = norm(row);
   server.a = next.a; server.b = next.b;
-  if (!r2.error) for (const n of r2.data || []) if ((n.person === "a" || n.person === "b") && typeof n.name === "string" && n.name) names[n.person] = n.name.slice(0, 20);
-  if (!live) setStatus("polling");
+  setStatus(live ? "live" : "polling");
   applyNames();
   return true;
 }
@@ -537,70 +487,27 @@ function onRow(msg){
   } else return;
   refresh();
 }
-function onName(msg){
-  const n = msg.new || {};
-  if ((n.person === "a" || n.person === "b") && typeof n.name === "string" && n.name){ names[n.person] = n.name.slice(0, 20); applyNames(); }
-}
-async function connect(c){
+function connect(c){
   if (!window.supabase || typeof window.supabase.createClient !== "function"){
     setStatus("error", "Supabase-Bibliothek konnte nicht geladen werden. Internetverbindung prüfen und neu laden.");
-    return false;
+    return;
   }
-  try { sb = window.supabase.createClient(c.url, c.key, {auth:{persistSession:false, autoRefreshToken:false}}); }
-  catch (e){ sb = null; setStatus("error", "Project URL oder Key ist ungültig."); return false; }
+  sb = window.supabase.createClient(c.url, c.key, {auth:{persistSession:false, autoRefreshToken:false}});
   setStatus("connecting");
-  const ok = await loadAll();
-  if (!ok){ sb = null; return false; }
+  loadAll();
   channel = sb.channel("tauschordner-live")
     .on("postgres_changes", {event:"*", schema:"public", table:"tauschordner"}, onRow)
-    .on("postgres_changes", {event:"*", schema:"public", table:"tauschordner_namen"}, onName)
     .subscribe(status => {
       if (status === "SUBSCRIBED"){ if (!live){ live = true; setStatus("live"); loadAll(); } }
       else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT" || status === "CLOSED"){ live = false; setStatus("polling"); }
     });
   document.addEventListener("visibilitychange", () => { if (!document.hidden) loadAll(); });
-  clearInterval(pollT);
   pollT = setInterval(() => { if (!live && !document.hidden) loadAll(); }, 15000);
-  for (const p of ["a","b"]) if (Object.keys(pend[p]).length) schedule(p, 50);
-  return true;
 }
 
 /* ---------- preview detection ---------- */
 const PREVIEW_MSG = "Die Seite läuft gerade in einer Vorschau (z. B. in der Claude-App). Dort ist keine Verbindung zu Supabase möglich. Öffne sie über deinen eigenen Hosting-Link.";
 function inPreview(){ try { return window.self !== window.top || location.protocol === "blob:" || location.protocol === "about:"; } catch (e){ return true; } }
-
-/* ---------- config ---------- */
-const b64e = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-const b64d = s => { s = s.replace(/-/g,"+").replace(/_/g,"/"); while (s.length % 4) s += "="; return decodeURIComponent(escape(atob(s))); };
-function cleanUrl(u){ u = (u || "").trim().replace(/\/+$/,""); if (u && !/^https?:\/\//i.test(u)) u = "https://" + u; return u; }
-function readConfig(){
-  if (CONFIG.url && CONFIG.key) return {url:cleanUrl(CONFIG.url), key:CONFIG.key.trim(), fixed:true};
-  const m = location.hash.match(/cfg=([\w-]+)/);
-  if (m){
-    try {
-      const c = JSON.parse(b64d(m[1]));
-      if (c.u && c.k){
-        try { localStorage.setItem("tc30-cfg", JSON.stringify(c)); } catch (e) {}
-        history.replaceState(null, "", location.pathname + location.search);
-        return {url:cleanUrl(c.u), key:c.k};
-      }
-    } catch (e) {}
-  }
-  try { const c = JSON.parse(localStorage.getItem("tc30-cfg") || "null"); if (c && c.u && c.k) return {url:cleanUrl(c.u), key:c.k}; } catch (e) {}
-  return null;
-}
-function showSetup(msg){
-  document.body.classList.add("needs-setup");
-  $("#setup").hidden = false;
-  setStatus("setup");
-  const e = $("#cfgErr"); e.hidden = !msg; e.textContent = msg || "";
-}
-function showApp(){
-  document.body.classList.remove("needs-setup");
-  $("#setup").hidden = true;
-  $("#resetCfg").hidden = !!(cfg && cfg.fixed);
-  refresh();
-}
 
 /* ---------- events ---------- */
 list.addEventListener("click", ev => {
@@ -661,63 +568,11 @@ $("#reset").addEventListener("click", () => {
   document.querySelectorAll("[data-group]").forEach(x => x.setAttribute("aria-pressed","false"));
   renderStatus(); refresh();
 });
-$("#saveNames").addEventListener("click", async () => {
-  if (!sb){ toast("Noch keine Datenbank verbunden."); return; }
-  const a = $("#inA").value.trim().slice(0,20) || "Person A", b = $("#inB").value.trim().slice(0,20) || "Person B";
-  names.a = a; names.b = b; applyNames();
-  const {error} = await sb.from("tauschordner_namen").upsert([{person:"a", name:a}, {person:"b", name:b}], {onConflict:"person"});
-  toast(error ? "Namen nicht gespeichert. " + explain(error) : "Namen gespeichert.");
-});
-async function copyText(text){
-  try { await navigator.clipboard.writeText(text); return true; }
-  catch (e){
-    const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.append(ta); ta.select();
-    let ok = false; try { ok = document.execCommand("copy"); } catch (e2) {}
-    ta.remove(); return ok;
-  }
-}
-$("#shareLink").addEventListener("click", async () => {
-  const base = location.origin + location.pathname;
-  const link = cfg && !cfg.fixed ? base + "#cfg=" + b64e(JSON.stringify({u:cfg.url, k:cfg.key})) : base;
-  if (navigator.share){
-    try { await navigator.share({title:"Tauschordner 30th Celebration", text:"Trag hier deine 30th-Celebration-Karten ein:", url:link}); return; }
-    catch (e){ if (e && e.name === "AbortError") return; }
-  }
-  toast(await copyText(link) ? "Link kopiert. Schick ihn deiner Tauschpartnerin." : link);
-});
-$("#resetCfg").addEventListener("click", () => {
-  try { localStorage.removeItem("tc30-cfg"); } catch (e) {}
-  location.reload();
-});
-$("#copySql").addEventListener("click", async () => toast(await copyText(SQL) ? "SQL kopiert. Im Supabase SQL Editor einfügen und ausführen." : "Kopieren nicht möglich. Datei supabase-setup.sql verwenden."));
-$("#cfgSave").addEventListener("click", async () => {
-  const url = cleanUrl($("#cfgUrl").value), key = $("#cfgKey").value.trim();
-  if (!url || !key){ showSetup("Bitte Project URL und Key eintragen."); return; }
-  $("#cfgSave").disabled = true;
-  const ok = await connect({url, key});
-  $("#cfgSave").disabled = false;
-  if (!ok){ showSetup($("#sync span").textContent); return; }
-  cfg = {url, key};
-  try { localStorage.setItem("tc30-cfg", JSON.stringify({u:url, k:key})); } catch (e) {}
-  showApp();
-  toast("Verbunden. Unter Einstellungen findest du den Link für deine Tauschpartnerin.");
-});
 
 /* ---------- start ---------- */
 applyMe(); applyNames();
-(async function start(){
-  if (inPreview()){ showSetup(PREVIEW_MSG); setStatus("error", "Vorschau-Modus, nicht verbunden"); return; }
-  cfg = readConfig();
-  if (!cfg){ showSetup(); return; }
-  showApp();
-  const ok = await connect(cfg);
-  if (!ok && !cfg.fixed){
-    const msg = $("#sync span").textContent;
-    $("#cfgUrl").value = cfg.url; $("#cfgKey").value = cfg.key;
-    showSetup(msg);
-  }
-})();
+if (inPreview()) setStatus("error", PREVIEW_MSG);
+else connect(CONFIG);
 </script>
 </body>
 </html>
